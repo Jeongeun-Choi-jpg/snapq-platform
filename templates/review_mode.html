@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>🔁 단어 복습 모드</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; text-align: center; }
+    h2 { color: #333; }
+    .word-box { font-size: 24px; margin: 20px 0; }
+    .option-btn {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .back { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>🔁 복습 퀴즈</h2>
+  <div class="word-box">👉 <strong>{{ word }}</strong> 의 뜻은?</div>
+
+  <form method="POST" action="/review-result">
+    {% for option in options %}
+      <button class="option-btn" name="answer" value="{{ option }}">{{ option }}</button><br>
+    {% endfor %}
+    <input type="hidden" name="correct" value="{{ correct }}">
+    <input type="hidden" name="word" value="{{ word }}">
+  </form>
+
+  <div class="back">
+    <a href="/">🏠 홈으로</a>
+  </div>
+</body>
+</html>

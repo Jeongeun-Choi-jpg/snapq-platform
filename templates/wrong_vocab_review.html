@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>❌ 틀린 단어 복습</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .word-box {
+            background: #fff;
+            display: inline-block;
+            padding: 20px 30px;
+            border-radius: 10px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
+            width: 400px;
+        }
+        .word-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+        }
+        .word-item span {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .back-link {
+            margin-top: 30px;
+            display: inline-block;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>❌ 내가 틀린 단어 복습하기</h2>
+
+    {% if words %}
+        <div class="word-box">
+            {% for word in words %}
+                <div class="word-item">
+                    <span>{{ word.english }}</span> - {{ word.korean }}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>🎉 틀린 단어가 없습니다! 정말 잘했어요!</p>
+    {% endif %}
+
+    <a class="back-link" href="/">🏠 홈으로 돌아가기</a>
+</body>
+</html>

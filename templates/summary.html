@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 학습 요약</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .summary-section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        ul {
+            padding-left: 20px;
+        }
+        a {
+            text-decoration: none;
+            margin-right: 15px;
+            color: #3498db;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h2>📊 나의 학습 요약</h2>
+
+    <div class="summary-section">
+        <h3>📚 범주별 레벨</h3>
+        <ul>
+            {% for theme, level in levels.items() %}
+                <li>{{ theme }}: Lv{{ level }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="summary-section">
+        <h3>📌 저장된 단어 수</h3>
+        <p>{{ total_words }}개</p>
+    </div>
+
+    <div class="summary-section">
+        <h3>🧠 최근 단어 퀴즈 정답률</h3>
+        <p>{{ quiz_accuracy }}%</p>
+    </div>
+
+    <div class="summary-section">
+        <h3>🔁 최근 복습 정답률</h3>
+        <p>{{ review_accuracy }}%</p>
+    </div>
+
+    <a href="{{ url_for('ranking') }}">🏅 랭킹 보기</a>
+    <a href="{{ url_for('select_theme') }}">🏠 처음으로</a>
+</body>
+</html>

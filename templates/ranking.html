@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🏅 사용자 랭킹</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>🏅 전체 사용자 랭킹</h2>
+    <table border="1">
+        <tr>
+            <th>순위</th>
+            <th>사용자</th>
+            <th>점수</th>
+        </tr>
+        {% for i, entry in enumerate(rankings, start=1) %}
+        <tr {% if entry.user == current_user %} style="background-color: #dff0d8;" {% endif %}>
+            <td>{{ i }}</td>
+            <td>{{ entry.user }}</td>
+            <td>{{ entry.score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('summary') }}">📊 학습 요약으로</a><br>
+    <a href="{{ url_for('select_theme') }}">🏠 처음으로</a>
+</body>
+</html>
+
+--- summary.html ---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>📊 학습 요약</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>📊 나의 학습 요약</h2>
+    <h3>📚 범주별 레벨</h3>
+    <ul>
+        {% for theme, level in levels.items() %}
+            <li>{{ theme }}: Lv{{ level }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>📌 저장된 단어 수: {{ total_words }}</h3>
+    <h3>🧠 최근 단어 퀴즈 정답률: {{ quiz_accuracy }}%</h3>
+    <h3>🔁 최근 복습 정답률: {{ review_accuracy }}%</h3>
+
+    <a href="{{ url_for('ranking') }}">🏅 랭킹 보기</a><br>
+    <a href="{{ url_for('select_theme') }}">🏠 처음으로</a>
+</body>
+</html>
+
+--- review_quiz.html ---
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🔁 단어 복습</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>🔁 복습 퀴즈 {{ index }}/{{ total }}</h2>
+    <p>단어: <strong>{{ word }}</strong></p>
+    <form method="POST">
+        {% for option in options %}
+            <input type="radio" name="answer" value="{{ option }}" required> {{ option }}<br>
+        {% endfor %}
+        <button type="submit">제출</button>
+    </form>
+</body>
+</html>

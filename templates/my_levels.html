@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>나의 레벨 요약</title>
+</head>
+<body>
+    <h2>📘 {{ user }}님의 SnapQ 레벨 요약</h2>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>범주</th>
+                <th>현재 레벨</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in levels_info %}
+            <tr>
+                <td>{{ item.theme }}</td>
+                <td>Lv.{{ item.level }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ url_for('select_theme') }}">← 다시 학습하러 가기</a>
+</body>
+</html>

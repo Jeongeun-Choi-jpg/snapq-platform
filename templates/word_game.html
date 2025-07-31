@@ -1,0 +1,22 @@
+<!-- templates/word_game.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>📘 단어 퀘스트</title>
+</head>
+<body>
+    <h2>📝 단어 {{ current }} / {{ total }}</h2>
+    <h3>단어: <strong>{{ word }}</strong></h3>
+
+    <form method="POST" action="/word-result">
+        {% for option in options %}
+            <p>
+                <input type="radio" name="answer" value="{{ option }}" required>
+                {{ option }}
+            </p>
+        {% endfor %}
+        <button type="submit">제출하기 ✅</button>
+    </form>
+</body>
+</html>

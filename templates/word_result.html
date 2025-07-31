@@ -1,0 +1,23 @@
+<!-- templates/word_result.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>📘 단어 결과</title>
+</head>
+<body>
+    <h2>🔍 단어 결과 확인</h2>
+    <p><strong>{{ result_message }}</strong></p>
+    <p>🔹 정답: {{ correct_answer }}</p>
+    <p>🔸 당신의 답변: {{ user_answer }}</p>
+
+    {% if current < total %}
+        <form method="GET" action="/word-game">
+            <button type="submit">다음 문제 ▶</button>
+        </form>
+    {% else %}
+        <p>🎉 단어 퀘스트 완료!</p>
+        <a href="/">🏠 처음으로</a>
+    {% endif %}
+</body>
+</html>

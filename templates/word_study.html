@@ -1,0 +1,22 @@
+<!-- templates/word_study.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>🧠 오늘의 단어 암기</title>
+</head>
+<body>
+    <h2>🧠 오늘의 단어 암기</h2>
+    <p>아래 단어들을 외우고 퀴즈를 풀 준비를 하세요!</p>
+
+    <ul>
+        {% for word in words %}
+            <li><strong>{{ word['word'] }}</strong> - {{ word['meaning'] }}</li>
+        {% endfor %}
+    </ul>
+
+    <form action="/word-quiz" method="post">
+        <button type="submit">💣 퀴즈 시작 ▶</button>
+    </form>
+</body>
+</html>

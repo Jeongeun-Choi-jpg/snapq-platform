@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>📘 나의 단어장</title>
+</head>
+<body>
+    <h1>📘 나의 단어장</h1>
+    <p>※ 최근 복습일 기준으로 정렬되어 있습니다.</p>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>단어</th>
+            <th>뜻</th>
+            <th>최근 복습일</th>
+        </tr>
+        {% for item in vocab_list %}
+        <tr>
+            <td>{{ item.word }}</td>
+            <td>{{ item.meaning }}</td>
+            <td>{{ item.last_reviewed }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

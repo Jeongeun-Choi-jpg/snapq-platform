@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Reading Theme</title>
+</head>
+<body>
+    <h2>📚 독해 범주를 선택하세요</h2>
+
+    <form action="/start-reading" method="post">
+        <label for="theme">범주 선택:</label>
+        <select name="theme" id="theme" required>
+            <option value="사회,문화">사회,문화</option>
+            <option value="교육,학습">교육,학습</option>
+            <option value="과학 일반">과학 일반</option>
+            <option value="심리학">심리학</option>
+            <option value="환경,생태">환경,생태</option>
+            <option value="경제,비즈니스">경제,비즈니스</option>
+            <option value="인문,철학">인문,철학</option>
+            <option value="예술,미디어">예술,미디어</option>
+            <option value="역사,문화유산">역사,문화유산</option>
+            <option value="건강,의학">건강,의학</option>
+            <option value="기술,AI,IT">기술,AI,IT</option>
+            <option value="지리,여행">지리,여행</option>
+            <option value="동물,생명">동물,생명</option>
+            <option value="법,윤리">법,윤리</option>
+            <option value="발명,발견">발명,발견</option>
+        </select>
+        <br><br>
+        <button type="submit">▶ 독해 시작하기</button>
+    </form>
+
+    <br>
+    <a href="/my-levels">📋 나의 레벨 보기</a>
+</body>
+</html>

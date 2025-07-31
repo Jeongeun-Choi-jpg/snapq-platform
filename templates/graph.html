@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 전투력 그래프 - SnapQ</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #0e0e0e;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .graph-box {
+            background-color: #1c1c1c;
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #00bcd4;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+
+        .home-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #26c6da;
+        }
+    </style>
+</head>
+<body>
+    <div class="graph-box">
+        <h1>📊 전투력 그래프</h1>
+        <canvas id="powerChart" width="600" height="300"></canvas>
+
+        <form action="/">
+            <button class="home-btn">🏠 홈으로 돌아가기</button>
+        </form>
+    </div>
+
+    <script>
+        const scores = {{ scores | tojson }};
+        const labels = scores.map((_, i) => `시도 ${i + 1}`);
+
+        const ctx = document.getElementById('powerChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '전투력 점수',
+                    data: scores,
+                    fill: false,
+                    borderColor: '#00e5ff',
+                    backgroundColor: '#00e5ff',
+                    tension: 0.2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!-- templates/reading_level_check.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>내 독해 레벨 확인</title>
+</head>
+<body>
+    <h2>📘 내 독해 카테고리 레벨 확인</h2>
+
+    <form action="/check-reading-level" method="post">
+        <label>아이디 (user_id):</label>
+        <input type="text" name="user_id" required>
+        <button type="submit">내 레벨 보기</button>
+    </form>
+
+    {% if results %}
+        <h3>💡 {{ user_id }}님의 현재 레벨</h3>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>카테고리</th>
+                <th>레벨</th>
+            </tr>
+            {% for row in results %}
+            <tr>
+                <td>{{ row['category'] }}</td>
+                <td>Lv.{{ row['level'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% elif searched %}
+        <p>해당 ID의 데이터가 없습니다.</p>
+    {% endif %}
+</body>
+</html>

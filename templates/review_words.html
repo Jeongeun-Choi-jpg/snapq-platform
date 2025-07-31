@@ -1,0 +1,37 @@
+<!-- templates/review_words.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>🧠 단어 암기 훈련</title>
+    <script>
+        let timeLeft = 60; // 60초 암기 시간
+        function countdown() {
+            const timer = document.getElementById("timer");
+            if (timeLeft <= 0) {
+                document.getElementById("form").submit();
+            } else {
+                timer.textContent = "⏳ 남은 시간: " + timeLeft + "초";
+                timeLeft--;
+                setTimeout(countdown, 1000);
+            }
+        }
+        window.onload = countdown;
+    </script>
+</head>
+<body>
+    <h2>📘 독해 지문 단어 암기</h2>
+    <p id="timer">⏳ 남은 시간: 60초</p>
+    <form id="form" method="POST" action="/start-word-quiz-from-reading">
+        <ul>
+            {% for item in word_list %}
+            <li>
+                <input type="checkbox" name="saved_words" value="{{ item.word }}">
+                <strong>{{ item.word }}</strong> - {{ item.meaning }}
+            </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">🧠 단어 암기 완료 & 퀴즈 시작</button>
+    </form>
+</body>
+</html>

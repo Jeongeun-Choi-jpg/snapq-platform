@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>📚 나의 누적 단어장</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h2 { color: #333; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background-color: #f0f0f0; }
+    .back-btn { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>📖 나의 누적 단어장</h2>
+
+  {% if words %}
+  <table>
+    <tr>
+      <th>No</th>
+      <th>단어</th>
+      <th>뜻</th>
+      <th>맞힌 횟수</th>
+      <th>저장 날짜</th>
+    </tr>
+    {% for word in words %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ word['word'] }}</td>
+      <td>{{ word['meaning'] }}</td>
+      <td>{{ word['correct_count'] }}</td>
+      <td>{{ word['review_date'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>저장된 단어가 아직 없습니다.</p>
+  {% endif %}
+
+  <div class="back-btn">
+    <a href="/">🏠 홈으로</a>
+  </div>
+</body>
+</html>

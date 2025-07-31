@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🪪 플레이어 카드 - SnapQ</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .card-box {
+            background-color: #1c1c1c;
+            border-radius: 20px;
+            border: 2px solid #4caf50;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .nickname {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #00e676;
+        }
+
+        .title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #ffc107;
+        }
+
+        .stats {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .stats p {
+            font-size: 18px;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .home-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #66bb6a;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-box">
+        <div class="nickname">{{ data.nickname }}</div>
+        <div class="title">{{ data.title }}</div>
+
+        <div class="stats">
+            <p>🧬 현재 레벨: Lv.{{ data.level }}</p>
+            <p>⚔️ 전투력 점수: {{ data.score }}</p>
+            <p>🎯 정답 수: {{ data.correct }}개</p>
+            <p>☠️ 오답 수: {{ data.wrong }}개</p>
+            <p>🔥 최고 콤보: {{ data.max_combo }}회</p>
+        </div>
+
+        <form action="/">
+            <button class="home-btn">🏠 홈으로 돌아가기</button>
+        </form>
+    </div>
+</body>
+</html>

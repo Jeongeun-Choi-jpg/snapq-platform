@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>📚 My Learning Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f0f0f0;
+        }
+        .btn-home {
+            margin-top: 30px;
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h2>📘 내 학습 기록 요약</h2>
+
+    {% if records %}
+    <table>
+        <tr>
+            <th>날짜</th>
+            <th>주제</th>
+            <th>지문 내용</th>
+            <th>점수</th>
+            <th>틀린 단어</th>
+        </tr>
+        {% for r in records %}
+        <tr>
+            <td>{{ r.timestamp }}</td>
+            <td>{{ r.theme }}</td>
+            <td>{{ r.title }}</td>
+            <td>{{ r.score }}점</td>
+            <td>
+                {% if r.wrong_words %}
+                    {{ r.wrong_words | join(', ') }}
+                {% else %}
+                    없음
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>아직 학습 기록이 없습니다.</p>
+    {% endif %}
+
+    <div style="text-align: center;">
+        <a class="btn-home" href="/">홈으로 돌아가기</a>
+    </div>
+</body>
+</html>

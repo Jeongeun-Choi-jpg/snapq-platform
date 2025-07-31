@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        .summary { margin-bottom: 30px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h2>Reading Completed!</h2>
+    <div class="summary">
+        <strong>Theme:</strong> {{ theme }}<br>
+        <strong>Score:</strong> {{ score }} / 3
+    </div>
+    <form method="POST" action="/start-word-memorize">
+        <input type="hidden" name="theme" value="{{ theme }}">
+        <input type="hidden" name="word_list" value="{{ word_list }}">
+        <button type="submit">Go to Word Memorization</button>
+    </form>
+</body>
+</html>

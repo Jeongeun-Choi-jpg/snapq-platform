@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎉 임무 완료! - 단어 복습 결과</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #101010;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 60px;
+        }
+        .result-box {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #00c853;
+            max-width: 600px;
+            margin: auto;
+        }
+        .result-box h2 {
+            color: #00e676;
+            margin-bottom: 20px;
+        }
+        .word-list {
+            list-style: none;
+            padding: 0;
+        }
+        .word-list li {
+            font-size: 20px;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #2e2e2e;
+            border-radius: 10px;
+            border: 1px solid #444;
+            transition: 0.2s;
+        }
+        .word-list li:hover {
+            background-color: #3e3e3e;
+            transform: scale(1.03);
+        }
+        .complete-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #00c853;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .complete-btn:hover {
+            background-color: #00e676;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 임무 완료!</h1>
+        <div class="result-box">
+            {% if wrong_words %}
+                <h2>☠️ 아직 정복하지 못한 단어들</h2>
+                <ul class="word-list">
+                    {% for word in wrong_words %}
+                        <li>🧠 {{ word }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h2>💪 모든 단어를 정복했습니다!</h2>
+                <p>단어 복수전도 완벽하게 마무리했어요!</p>
+            {% endif %}
+            <form action="/">
+                <button type="submit" class="complete-btn">🏠 홈으로 돌아가기</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

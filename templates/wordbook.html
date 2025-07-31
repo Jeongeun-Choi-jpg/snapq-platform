@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Wordbook</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>📘 나의 단어장 (오답 단어)</h2>
+    {% if wordbook %}
+        <ul>
+        {% for word in wordbook %}
+            <li>{{ word }}</li>
+        {% endfor %}
+        </ul>
+        <a href="{{ url_for('word_review') }}">🔁 복습하기</a><br>
+    {% else %}
+        <p>저장된 단어가 없습니다.</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('select_theme') }}">🏠 처음으로</a>
+</body>
+</html>

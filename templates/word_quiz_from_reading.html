@@ -1,0 +1,44 @@
+<!-- templates/word_quiz_from_reading.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>🎯 단어 퀴즈</title>
+    <script>
+        let timeLeft = 45; // 제한 시간 45초
+        function countdown() {
+            const timer = document.getElementById("timer");
+            if (timeLeft <= 0) {
+                alert("⏱️ 시간이 초과되었습니다! 자동 제출됩니다.");
+                document.getElementById("quizForm").submit();
+            } else {
+                timer.textContent = "⏳ 남은 시간: " + timeLeft + "초";
+                timeLeft--;
+                setTimeout(countdown, 1000);
+            }
+        }
+        window.onload = countdown;
+    </script>
+</head>
+<body>
+    <h2>🎯 단어 퀴즈</h2>
+    <p id="timer">⏳ 남은 시간: 45초</p>
+
+    <form id="quizForm" method="POST" action="/word-quiz-result">
+        {% for q in quiz %}
+            <div style="margin-bottom:20px;">
+                <p><strong>Q{{ loop.index }}. {{ q.word }}</strong></p>
+                {% for opt in q.options %}
+                    <label>
+                        <input type="radio" name="q{{ loop.parent.index0 }}" value="{{ opt }}" required>
+                        {{ opt }}
+                    </label><br>
+                {% endfor %}
+                <input type="hidden" name="answer{{ loop.index0 }}" value="{{ q.answer }}">
+                <input type="hidden" name="word{{ loop.index0 }}" value="{{ q.word }}">
+            </div>
+        {% endfor %}
+        <button type="submit">✅ 제출하기</button>
+    </form>
+</body>
+</html>

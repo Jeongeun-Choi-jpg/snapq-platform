@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial; text-align: center; padding: 50px; }
+        .score { font-size: 22px; margin-bottom: 20px; color: #333; }
+        .btn { padding: 10px 20px; font-size: 16px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>✅ Quiz Completed</h2>
+    <div class="score">{{ username }}'s Score: {{ correct }} / {{ total }}</div>
+
+    <a href="/ranking"><button class="btn">View Ranking</button></a>
+    <a href="/"><button class="btn">Back to Home</button></a>
+</body>
+</html>

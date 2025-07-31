@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>❌ 틀린 단어 관리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            text-align: center;
+            padding: 40px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            display: inline-block;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: #f44336;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h2>❌ 틀린 단어 삭제</h2>
+    {% if vocab %}
+    <form method="POST" action="/wrong-vocab-manage">
+        <table>
+            <tr>
+                <th>단어</th>
+                <th>뜻</th>
+                <th>삭제</th>
+            </tr>
+            {% for word in vocab %}
+            <tr>
+                <td>{{ word.word }}</td>
+                <td>{{ word.meaning }}</td>
+                <td>
+                    <input type="checkbox" name="delete" value="{{ word.word }}">
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">선택한 단어 삭제</button>
+    </form>
+    {% else %}
+        <p>현재 틀린 단어가 없습니다.</p>
+    {% endif %}
+</body>
+</html>

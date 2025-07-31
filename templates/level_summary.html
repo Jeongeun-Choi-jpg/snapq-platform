@@ -1,0 +1,32 @@
+<!-- templates/level_summary.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 내 독해 레벨 요약</title>
+    <style>
+        body { font-family: Arial; padding: 30px; }
+        table { border-collapse: collapse; width: 60%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 12px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        a { text-decoration: none; color: blue; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>📚 범주별 독해 레벨 요약</h2>
+    <table>
+        <tr>
+            <th>범주</th>
+            <th>현재 레벨</th>
+        </tr>
+        {% for theme, level in levels.items() %}
+        <tr>
+            <td>{{ theme }}</td>
+            <td>Lv.{{ level }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/">🏠 메인으로 돌아가기</a>
+</body>
+</html>

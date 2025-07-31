@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>📅 출석 완료 - SnapQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .box {
+            background-color: #1c1c1c;
+            border: 2px solid #00c853;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 20px #00c85360;
+        }
+
+        .box h1 {
+            color: #00e676;
+            margin-bottom: 20px;
+        }
+
+        .box p {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #00c853;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #00e676;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>📅 출석 완료</h1>
+        <p>{{ message }}</p>
+        <p>🪙 현재 보유 코인: <strong>{{ coins }}</strong></p>
+
+        <form action="/">
+            <button type="submit" class="btn">🏠 홈으로 돌아가기</button>
+        </form>
+    </div>
+</body>
+</html>

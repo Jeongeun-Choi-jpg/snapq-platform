@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎯 전장 입장 - SnapQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .timer {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .timer.red {
+            color: #ff4444;
+            animation: flash 1s infinite;
+        }
+
+        @keyframes flash {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .option-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 30px;
+            font-size: 18px;
+            background-color: #00e5ff;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background-color: #00bcd4;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 미션 개시!</h1>
+        <div class="timer" id="timer">⏱️ 30</div>
+
+        <div class="passage-box">
+            <p><strong>📂 지역 정보:</strong></p>
+            <p>{{ sentence }}</p>
+        </div>
+
+        <form method="POST" id="quizForm">
+            <div class="question-box">
+                <p><strong>🎯 문제:</strong> {{ question }}</p>
+                {% for option in options %}
+                    <button type="button" class="option-btn" onclick="submitAnswer('{{ option }}')">{{ option }}</button>
+                {% endfor %}
+                <input type="hidden" name="answer" id="answerInput">
+            </div>
+        </form>
+    </div>
+
+    <!-- 🎧 효과음 -->
+    <audio id="correct-sound" src="{{ url_for('static', filename='sounds/correct.mp3') }}"></audio>
+    <audio id="wrong-sound" src="{{ url_for('static', filename='sounds/wrong.mp3') }}"></audio>
+
+    <script>
+        let timeLeft = 30;
+        const timerElement = document.getElementById("timer");
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerElement.textContent = `⏱️ ${timeLeft}`;
+
+            if (timeLeft <= 10) {
+                timerElement.classList.add("red");
+            }
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                alert("💥 시간 초과! 자동 제출됩니다.");
+                document.getElementById("quizForm").submit();
+            }
+        }, 1000);
+
+        function submitAnswer(choice) {
+            // 정답 정보를 서버에 넘길 준비
+            document.getElementById("answerInput").value = choice;
+
+            // 정답 확인을 위해 숨겨진 값 가져오기
+            const correctAnswer = "{{ options[0] }}";  // 서버에서 첫 번째 선택지를 정답으로 가정 (※ 실제론 서버에서만 알 수 있음)
+
+            // 정답/오답 판단 → 소리 재생
+            if (choice === correctAnswer) {
+                playSound("correct");
+            } else {
+                playSound("wrong");
+            }
+
+            // 약간 지연 후 제출
+            setTimeout(() => {
+                document.getElementById("quizForm").submit();
+            }, 300);
+        }
+
+        function playSound(type) {
+            const sound = document.getElementById(type + "-sound");
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+        }
+    </script>
+</body>
+</html>

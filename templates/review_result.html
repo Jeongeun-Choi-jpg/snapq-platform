@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>🔁 복습 결과</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; text-align: center; }
+    .result { font-size: 22px; margin: 30px 0; color: green; }
+    .wrong { color: red; }
+    .btn { padding: 12px 24px; font-size: 16px; margin: 10px; text-decoration: none; border: 1px solid #ccc; background: #f2f2f2; }
+  </style>
+</head>
+<body>
+  {% if result %}
+    <div class="result">🎉 정답입니다!</div>
+  {% else %}
+    <div class="result wrong">❌ 오답입니다! 정답은: <strong>{{ correct }}</strong></div>
+  {% endif %}
+
+  {% if has_more %}
+    <a href="/review-mode" class="btn">👉 다음 단어</a>
+  {% else %}
+    <a href="/my-words" class="btn">📄 복습 완료! 단어장 보기</a>
+  {% endif %}
+</body>
+</html>

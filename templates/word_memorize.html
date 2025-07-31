@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Memorize</title>
+    <meta charset="utf-8">
+    <script>
+        let countdown = 10;
+        function startCountdown() {
+            const timer = document.getElementById('timer');
+            const interval = setInterval(() => {
+                countdown--;
+                timer.textContent = countdown;
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    document.getElementById('quizForm').submit();
+                }
+            }, 1000);
+        }
+    </script>
+</head>
+<body onload="startCountdown()">
+    <h2>🧠 단어를 외우세요! (자동으로 퀴즈로 이동합니다)</h2>
+    <p id="timer">10</p>
+    <ul>
+        {% for word in words %}
+        <li>{{ word }}</li>
+        {% endfor %}
+    </ul>
+    <form id="quizForm" action="{{ url_for('start_word_quiz') }}" method="get"></form>
+</body>
+</html>
